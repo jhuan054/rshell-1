@@ -1,3 +1,4 @@
+
 #ifndef Execute_H
 #define Execute_H
 #pragma GCC diagnostic ignored "-Wwrite-strings"
@@ -63,6 +64,7 @@ class Execute : public CommandLine
         }
         //bool success = program.execte(command);
         //perror(program.out().c_str());
+        program.execte(command);
         if (program.getStatus()) 
         {
             this->cont = 0;
