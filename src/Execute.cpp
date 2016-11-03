@@ -61,7 +61,7 @@ class Execute : public CommandLine
                 return;
             }
         }
-        bool success = program.execte(command);
+        //bool success = program.execte(command);
         //perror(program.out().c_str());
         if (program.getStatus()) 
         {
