@@ -77,7 +77,6 @@ class Execute : public CommandLine
                 return;
             }
         }
-
         program.exe(command);
         if (program.getStatus()) 
         {
