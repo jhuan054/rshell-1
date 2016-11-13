@@ -62,7 +62,7 @@ class Execute : public CommandLine
             if (strcmp(tokens[0], builtinCommand[i]) == 0) {
                 if ( i == 0 || i == 1) builtin.exe(command);
                 else{
-                    if (strcmp(tokens[pos-1], builtinCommand[3])) builtin.exe(command);
+                    if (strcmp(tokens[pos-1], builtinCommand[3])==0) builtin.exe(command);
                     else{
                         cout<<"rshell error: missing ]"<<endl;
                         return;
@@ -126,9 +126,9 @@ class Execute : public CommandLine
         return false;
     }
 };
-int main(){
+/*int main(){
     CommandLine test = CommandLine(" [ src ");
     Execute ex;
     ex.exe(test);
-}
+}*/
 #endif
