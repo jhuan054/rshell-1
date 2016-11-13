@@ -17,7 +17,7 @@ class Program : public CommandLine
     
     public:
     Program(){ status = true;}
-    bool execte(CommandLine command)
+    void exe(CommandLine command)
     {
         char* arg;
         char* token;
@@ -44,21 +44,15 @@ class Program : public CommandLine
         // Child process
             if (execvp(tokens[0], tokens) == -1)
             {
-                //this->line = programFail();
-                //perror(this->out().c_str());
-                //delete[] arg;
                 setStatus(false);
                 perror("rshell error");
-                //kill(pid, SIGKILL);
-            
+                exit(5);
             }
             delete[] arg;
-            exit(EXIT_FAILURE);
         } 
         else if (pid < 0) 
         {
             // Error forking
-           // delete[] arg;
             perror("rshell error");
         } 
         else 
@@ -72,15 +66,14 @@ class Program : public CommandLine
            // delete[] arg;
             
         }
-        //if (WIFEXITED(child_status)) this->line = "t";
-        //else this->line = "f";
-        /*if (WEXITSTATUS(status) != 0) 
+
+        if (WEXITSTATUS(child_status) == 5) 
         {
 
            this->status = false;
-        }*/
-    delete[] arg;
-        return WIFEXITED(child_status);
+        }
+        delete[] arg;
+
     }
     
     void setStatus(bool b){

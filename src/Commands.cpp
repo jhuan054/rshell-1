@@ -26,7 +26,7 @@ class Commands : public CommandLine
         {
             if ((*(it + i) == '&' && *(it + i +1) == '&') || 
             (*(it + i) == '|' && *(it + i +1) == '|')
-            || *(it + i) == ';' || *(it + i) == '#')
+            || *(it + i) == ';' || *(it + i) == '#'|| *(it + i) == '('|| *(it + i) == ')')
             { 
                 connector.push_back(i);
             }
@@ -38,6 +38,7 @@ class Commands : public CommandLine
         }
         for (unsigned i = 0; i < connector.size(); i++)
         {
+            
             if (i == 0 && *it != '#')
             {
                 add = needToParse.substr(0, connector.at(0));
@@ -79,6 +80,42 @@ class Commands : public CommandLine
             
             if (*(it+connector.at(i)) == ';')
             {
+                add = needToParse.substr(connector.at(i),1);
+                this->connector.push_back( CommandLine(add));
+                if (i < connector.size() - 1)
+                {
+                   add = needToParse.substr(connector.at(i)+1, 
+                   connector.at(i+1)-connector.at(i)-1);
+                   this->command.push_back( CommandLine(add));
+                }
+                else 
+                {
+                    add = needToParse.substr(connector.at(i)+1, 
+                    needToParse.size() - connector.at(i)-1);
+                    this->command.push_back(CommandLine(add));
+                }
+            }
+            
+            if (*(it+connector.at(i)) == '(')
+            {cout << "OPERNER DETECTED";
+                add = needToParse.substr(connector.at(i),1);
+                this->connector.push_back( CommandLine(add));
+                if (i < connector.size() - 1)
+                {
+                   add = needToParse.substr(connector.at(i)+1, 
+                   connector.at(i+1)-connector.at(i)-1);
+                   this->command.push_back( CommandLine(add));
+                }
+                else 
+                {
+                    add = needToParse.substr(connector.at(i)+1, 
+                    needToParse.size() - connector.at(i)-1);
+                    this->command.push_back(CommandLine(add));
+                }
+            }
+            
+            if (*(it+connector.at(i)) == ')')
+            {cout << "CLOSER DETECTED";
                 add = needToParse.substr(connector.at(i),1);
                 this->connector.push_back( CommandLine(add));
                 if (i < connector.size() - 1)

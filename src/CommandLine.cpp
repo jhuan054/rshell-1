@@ -24,7 +24,6 @@ class CommandLine
     string out()
     {
         string outline;
-        cout<<outline<<endl;
         outline = this->line;
         return outline;
     }
