@@ -13,6 +13,7 @@
 # include <sys/wait.h> 
 # include "Program.cpp"
 # include "BuiltIn.cpp"
+# include "Commands.cpp"
 class Execute : public CommandLine
 {
     protected:
@@ -22,7 +23,7 @@ class Execute : public CommandLine
     public:
     Execute()
     {
-        
+        cont = true;
         exitShell = true;
     }
     void exe(CommandLine command){
@@ -77,6 +78,7 @@ class Execute : public CommandLine
                 return;
             }
         }
+
         program.exe(command);
         if (program.getStatus()) 
         {
@@ -126,9 +128,197 @@ class Execute : public CommandLine
         return false;
     }
 };
+
+
+class Pexecute{
+    protected:
+    bool cont;
+    bool exitShell;
+    
+    public:
+    Pexecute()
+    {
+        cont = true;
+        exitShell = true;
+    }    
+    
+    void exe(CommandLine command){
+        std::size_t leftParentheseFound = command.out().find("(");
+        std::size_t rightParentheseFound = command.out().find(")");
+        if ( leftParentheseFound == string::npos && rightParentheseFound == string::npos){
+            Commands commands = Commands();
+            commands.exe(command.out());
+            vector<Execute> execute;
+            for (int i = 0; i < commands.commandSize(); i++){
+                Execute teo = Execute();
+                execute.push_back(teo);
+            }
+            for (int i = 0; i < commands.commandSize(); i++){
+                if (i == 0){
+            
+                    execute.at(0).exe(commands.commandAt(0));
+                    this->exitShell = execute.at(0).exitevl();
+                    if ( this->exitShell == false) return;
+                } 
+                else{
+                    if (execute.at(i).whetherNext(execute, commands.connectorOut(),i)){
+                        execute.at(i).exe(commands.commandAt(i));
+                        this->exitShell = execute.at(i).exitevl();
+                        if ( this->exitShell == false) return;
+                    } 
+                }
+            } 
+            if (commands.commandSize() == 1) this->cont = execute.at(commands.commandSize()-1).contevl();
+            else{
+                if (execute.at(commands.commandSize()-1).contevl() == true && commands.connectorOut().at(commands.commandSize() - 2).out() == "&&") this->cont = execute.at(commands.commandSize() - 2).contevl();
+                else this->cont = execute.at(commands.commandSize()-1).contevl();
+            }
+        }
+        else{
+            Pchecker pcommands = Pchecker();
+            pcommands.process(command.out());
+            vector<Pexecute> pexecute;
+            for (int i = 0; i < pcommands.commandSize(); i++){
+                Pexecute teo = Pexecute();
+                pexecute.push_back(teo);
+            }
+            for (int i = 0; i < pcommands.commandSize(); i++){
+                if (i == 0){
+            
+                    pexecute.at(0).exe(pcommands.commandAt(0));
+                    this->exitShell = pexecute.at(0).exitevl();
+                    if ( this->exitShell == false) return;
+                } 
+                else{
+                    if (pexecute.at(i).whetherNext(pexecute, pcommands.connectorOut(),i)){
+                        pexecute.at(i).exe(pcommands.commandAt(i));
+                        this->exitShell = pexecute.at(i).exitevl();
+                        if ( this->exitShell == false) return;
+                    } 
+                }
+            }  
+            if (pcommands.commandSize() == 1) this->cont = pexecute.at(pcommands.commandSize()-1).contevl();
+            else{
+                if (pexecute.at(pcommands.commandSize()-1).contevl() == true && pcommands.connectorOut().at(pcommands.commandSize() - 2).out() == "&&") this->cont = pexecute.at(pcommands.commandSize() - 2).contevl();
+                else this->cont = pexecute.at(pcommands.commandSize()-1).contevl();
+            }            
+        }
+    }
+    
+    bool exitevl(){
+        return this->exitShell;
+    }
+    
+    bool contevl(){
+        return this->cont;
+    }
+    
+    bool whetherNext(vector<Pexecute> execute, vector<CommandLine> connector,int pos){
+        bool leftCommand = execute.at(0).contevl();
+        if (connector.at(pos-1).out() == ";"){
+            return 1;
+        }
+        for (int i = 0; i < pos - 1; i++){
+            if (connector.at(i).out() == ";"){
+                leftCommand = execute.at(i+1).contevl();
+            }
+        
+            if (connector.at(i).out() == "&&"){
+                leftCommand = leftCommand && execute.at(i+1).contevl();
+            }
+            if (connector.at(i).out() == "||"){
+                leftCommand = leftCommand || execute.at(i+1).contevl();
+            }
+        }
+
+        
+        if (connector.at(pos-1).out() == "&&"){
+            if (leftCommand) return 1;
+            else return 0;
+        }
+        if (connector.at(pos-1).out() == "||"){
+            if (!leftCommand) return 1;
+            else return 0;
+        }
+        cout<< "Terribly wrong"<<endl;
+        return false;
+    }
+};
+#endif
 /*int main(){
     CommandLine test = CommandLine(" [ src ");
     Execute ex;
     ex.exe(test);
-}*/
-#endif
+}
+if (connector.at(pos-1).out() == "("){
+int countOpens;
+bool found_start =  false; // true when found, false reset when end found
+bool found_end =  false;
+            for(int i = pos-1; i< connector.size();i++)
+            {
+                if(connector.at(i).out()== ")")
+                {
+                    if(found_start == true ;)
+                    {
+                        found_end = false;
+                        //find a way to return position
+                    }
+                }
+            }
+            if(foundend == false)
+            {
+            cout <<"missing at least one bracket"
+                exit
+            }
+            if(foundstart == )
+        }
+        
+        int Openfinder(int from)
+        {
+             for(int i = from; i< connector.size();i++)
+            {
+                if(connector.at(i).out()== "(")
+                {
+                   return i;
+                }
+            }
+            return -1;
+        }
+        int end_finder(int from)
+        {
+            int count = 1;
+            for(int i = from; i< connector.size();i++)
+            {
+                if(connector.at(i).out()== "(")
+                {
+                   count++;
+                }
+                if(connector.at(i).out()== "(")
+                {
+                   count--;
+                   if(count == 0)
+                   {
+                       return i;
+                   }
+                }
+            }
+            return -1;
+        }
+        
+        
+        put togethrmethod()
+        {
+            int start = Openfinder(0);
+            if(start == -1)
+            {
+                cout << "no open parentheses"
+            }
+            int end = end_finder(start+1);
+            if(end == -1 && start != -1)
+            {
+                cout << "missing closing parentheses"
+            }
+            
+        }
+*/
+
