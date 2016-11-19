@@ -27,3 +27,4 @@ $ bin/rshell
 * The host name obtained by ```gethostname()``` is limited to a maximum of 60 characters. Any name longer than that will be truncated. The hostName buffer is set to "UNKNOWN_HOST" if a failure occurs.
 * The user name obtained by ```gelogin_r()``` is limited to a maximum of 60 characters. Any name longer than that will be truncated. The userName buffer is set to "UNKNOWN_USER" if a failure occurs.
 * If the user enters improperly formatted command line arguments erroneous behavior may occur.
+* If there is a space between parentheses, rshell cannot run.
