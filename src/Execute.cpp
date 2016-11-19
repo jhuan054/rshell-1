@@ -245,10 +245,3 @@ class Pexecute{
     }
 };
 #endif
-/*int main(){
-    CommandLine test = CommandLine(" [ src ");
-    Execute ex;
-    ex.exe(test);
-}*/
-
-
