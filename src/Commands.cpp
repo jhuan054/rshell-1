@@ -468,7 +468,7 @@ class Pchecker{
                 this->exe(whole.substr(below));
                 }
                 // outputting vecotrs -------------------------------------------------------------
-                for(unsigned int i = 0; i < command.size();i++)
+                /*for(unsigned int i = 0; i < command.size();i++)
                 {
                     cout << " COP " <<command.at(i).out()<<endl;
                      //exec()
@@ -480,7 +480,7 @@ class Pchecker{
                      //exec()
                 }
                 cout << " FIN "<<endl;
-                
+                */
             }
        
         
@@ -489,12 +489,3 @@ class Pchecker{
     
 
 };
-
-/*{
-    CommandLine test = CommandLine( "  echo c|| echo d  || echo e #roepopso");  //"(echo a || echo b ); ( ( echo c&& echo d ) || echo e ) ; (echo f && echo g)");
-    Pchecker ex = Pchecker();
-    ex.process(test);
-    Commands cmds;
-    cmds.exe(CommandLine("echo a||echo b;"));
-}*/
-
