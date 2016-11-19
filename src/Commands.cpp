@@ -324,7 +324,7 @@ class Pchecker{
         int Openfinder(int from, CommandLine commandline)
         {string bleh = commandline.out();
        // cout <<"in opens"<<endl;
-             for(int i = from; i< bleh.length();i++)
+             for(unsigned int i = from; i< bleh.length();i++)
             {
                 
                 if(bleh.at(i)== '(')
@@ -339,7 +339,7 @@ class Pchecker{
         {
             int count = 1;
          //   cout <<"in fins"<<endl;
-            for(int i = from; i< commandline.out().size();i++)
+            for(unsigned int i = from; i< commandline.out().size();i++)
             {
                 if(commandline.out().at(i)== '(')
                 {
@@ -361,7 +361,7 @@ class Pchecker{
         {
             int count = 0;
          //   cout <<"in fins"<<endl;
-            for(int i = 0; i< commandline.out().size();i++)
+            for(unsigned int i = 0; i< commandline.out().size();i++)
             {
                 if(commandline.out().at(i)== '(')
                 {
@@ -431,7 +431,7 @@ class Pchecker{
                 {cout<<starts.at(i)<<endl;}
                 cout<<"finished"<<endl;*/
                 //--------------------
-                for(int i = 0; i < starts.size();i++)
+                for(unsigned int i = 0; i < starts.size();i++)
                 {
                      temp = whole.substr(below, starts.at(i)-below);
                      //cout << whole<<endl;
@@ -468,13 +468,13 @@ class Pchecker{
                 this->exe(whole.substr(below));
                 }
                 // outputting vecotrs -------------------------------------------------------------
-                for(int i = 0; i < command.size();i++)
+                for(unsigned int i = 0; i < command.size();i++)
                 {
                     cout << " COP " <<command.at(i).out()<<endl;
                      //exec()
                 }
                 cout << " FIN "<<endl;
-                for(int i = 0; i < connector.size();i++)
+                for(unsigned int i = 0; i < connector.size();i++)
                 {
                     cout << connector.at(i).out()<<endl;
                      //exec()
@@ -490,54 +490,11 @@ class Pchecker{
 
 };
 
-int main(){
+/*{
     CommandLine test = CommandLine( "  echo c|| echo d  || echo e #roepopso");  //"(echo a || echo b ); ( ( echo c&& echo d ) || echo e ) ; (echo f && echo g)");
     Pchecker ex = Pchecker();
     ex.process(test);
     Commands cmds;
     cmds.exe(CommandLine("echo a||echo b;"));
-}
-
-/*class Pcommands {
-    protected:
-    vector<CommandLine> command;
-    vector<CommandLine> parentheses;
-
-    public:
-    void exe(CommandLine commandline){
-        vector<unsigned> connector;
-        string add;
-        string needToParse = commandline.out();
-        string::iterator it = needToParse.begin();
-        int numOfLeft = 0;
-        int numOfRight = 0;
-        for (unsigned i = 0; i < needToParse.size(); i++)
-        {
-            if ((*(it + i) == '(')// *(it + i) == '('|| *(it + i) == ')')
-            { 
-                numOfLeft++;
-            }
-            if ((*(it + i)) == ')')
-            {
-                numOfRight++;
-            }
-            if (numOfLeft == 1){
-                parentheses.push_back(i);
-            }
-            if ( numOfLeft == numOfRight && numOfLeft != 0){
-                parentheses.push_back(i);
-                numOfLeft = 0;
-                numOfRight = 0;
-            }
-        }
-        if ( connector.size() == 0){
-        {
-            add = needToParse;
-            this->command.push_back(CommandLine(add));
-        }
-        
-        for ( unsigned i = 0; i < connector.size(); i++){
-            add = needToParse(0, connector.at(i))
-        }
-    }
 }*/
+

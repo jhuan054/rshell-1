@@ -3,7 +3,6 @@
 # pragma GCC diagnostic ignored "-Wwrite-strings"
 # include "CommandLine.cpp"
 # define LSH_TOK_DELIM " \t\r\n\a"
-//# define LSH_TOK_DELIM " "
 # include<stdio.h>
 # include <string.h>
 # include <cstring>
@@ -18,7 +17,7 @@ class BuiltIn : public CommandLine
 {
     
     protected:
-    int num;// = 1;
+    int num;
     
     public:
     BuiltIn()
@@ -35,8 +34,6 @@ class BuiltIn : public CommandLine
     {
         int exist;
         struct stat sb;
-        //cout<<arglist[1]<<endl;
-        //cout<<arglist[2]<<endl;
         if (string(arglist[1]) != "-e"  && string(arglist[1]) != "-f" && string(arglist[1]) != "-d"){
             
             exist = stat(arglist[1], &sb);
