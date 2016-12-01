@@ -15,7 +15,7 @@ $ git clone https://github.com/hongchengkuan/rshell.git
 
 $ cd rshell
 
-$ git checkout hw3
+$ git checkout hw4
 
 $ make
 
