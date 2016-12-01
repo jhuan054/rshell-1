@@ -247,11 +247,3 @@ class Pexecute{
     }
 };
 #endif
-/*int main(){
-    CommandLine test = CommandLine("cd ../src/..");
-    Execute ex;
-    ex.exe(test);
-    cout<<string(getenv("PWD"))<<endl;
-}*/
-
-

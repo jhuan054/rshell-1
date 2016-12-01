@@ -489,12 +489,3 @@ class Pchecker{
     
 
 };
-
-/*{
-    CommandLine test = CommandLine( "  echo c|| echo d  || echo e #roepopso");  //"(echo a || echo b ); ( ( echo c&& echo d ) || echo e ) ; (echo f && echo g)");
-    Pchecker ex = Pchecker();
-    ex.process(test);
-    Commands cmds;
-    cmds.exe(CommandLine("echo a||echo b;"));
-}*/
-
