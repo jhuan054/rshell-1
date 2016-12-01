@@ -468,7 +468,7 @@ class Pchecker{
                 this->exe(whole.substr(below));
                 }
                 // outputting vecotrs -------------------------------------------------------------
-                for(unsigned int i = 0; i < command.size();i++)
+                /*for(unsigned int i = 0; i < command.size();i++)
                 {
                     cout << " COP " <<command.at(i).out()<<endl;
                      //exec()
@@ -480,7 +480,7 @@ class Pchecker{
                      //exec()
                 }
                 cout << " FIN "<<endl;
-                
+                */
             }
        
         

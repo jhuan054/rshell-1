@@ -50,7 +50,8 @@ class Execute : public CommandLine
             "exit",
             "test",
             "[",
-            "]"
+            "]",
+            "cd"
         };
         BuiltIn builtin =  BuiltIn();
         Program program =  Program();
@@ -62,6 +63,7 @@ class Execute : public CommandLine
 
             if (strcmp(tokens[0], builtinCommand[i]) == 0) {
                 if ( i == 0 || i == 1) builtin.exe(command);
+                else if ( i == 4) builtin.exe(command);
                 else{
                     if (strcmp(tokens[pos-1], builtinCommand[3])==0) builtin.exe(command);
                     else{
@@ -246,9 +248,10 @@ class Pexecute{
 };
 #endif
 /*int main(){
-    CommandLine test = CommandLine(" [ src ");
+    CommandLine test = CommandLine("cd ../src/..");
     Execute ex;
     ex.exe(test);
+    cout<<string(getenv("PWD"))<<endl;
 }*/
 
 

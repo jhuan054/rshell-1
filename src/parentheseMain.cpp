@@ -12,6 +12,9 @@ int main(){
         cout << getlogin();
         cout << "@";
         cout << hostname;
+	cout << "[ ";
+	cout << getenv("PWD");
+	cout << " ]";
         cout << "$ ";
         string readline;
         getline(cin,readline);

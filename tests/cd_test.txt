@@ -1,0 +1,15 @@
+cd ..
+pwd
+cd tests
+pwd 
+cd ..
+pwd
+cd -
+pwd
+cd
+pwd
+cd ../..
+pwd
+cd /
+pwd 
+exit
