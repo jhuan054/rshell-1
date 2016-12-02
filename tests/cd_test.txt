@@ -1,15 +1,29 @@
 cd ..
+echo cd ..
 pwd
+echo finished
 cd tests
-pwd 
+echo cd tests
+pwd
+echo finished 
 cd ..
+echo cd ..
 pwd
+echo finished
 cd -
+echo cd -
 pwd
+echo finished
 cd
+echo cd
 pwd
+echo finished
 cd ../..
+echo cd ../..
 pwd
+echo finished
 cd /
-pwd 
+echo cd /
+pwd
+echo finished 
 exit
