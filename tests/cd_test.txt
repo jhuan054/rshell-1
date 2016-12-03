@@ -25,5 +25,8 @@ echo finished
 cd /
 echo cd /
 pwd
-echo finished 
+echo finished
+cd /home/csgrads
+echo cd /home/csgrads
+pwd 
 exit
