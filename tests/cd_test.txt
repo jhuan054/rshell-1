@@ -29,4 +29,5 @@ echo finished
 cd /home/csgrads
 echo cd /home/csgrads
 pwd 
+cd notafolder
 exit
